@@ -107,6 +107,10 @@ body {
     position: relative;
     overflow: hidden;
     padding-top: 80px;
+    background-image: url('/images/DETECTING_Edmonds_2018-12.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .hero::before {
@@ -116,10 +120,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image:
-        "/images/DETECTING_Edmonds_2018-12.jpg"
-    /*background-image:
-        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(190, 198, 205, 0.03) 35px, rgba(190, 198, 205, 0.03) 70px);*/
+    background: linear-gradient(135deg, rgba(35, 36, 37, 0.75) 0%, rgba(49, 80, 71, 0.75) 100%);
+    z-index: 1;
 }
 
 .hero-content {
