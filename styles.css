@@ -10,6 +10,8 @@
     --shadow: rgba(0, 0, 0, 0.1);
 }
 
+
+
 * {
     margin: 0;
     padding: 0;
@@ -115,7 +117,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
+    background-image:
         repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(212, 175, 55, 0.03) 35px, rgba(212, 175, 55, 0.03) 70px);
 }
 
@@ -489,3 +491,32 @@ section {
         gap: 0.5rem;
     }
 }
+
+/* https://www.canva.com/colors/color-palettes/from-the-soil/
+The color-palette is "from-the-soil/"
+
+Misty Blue > maybe buttons?
+#d9e4ec
+
+Forest Green > text
+#335b50
+
+Carafe > primary
+#483128
+
+Khaki > secondary
+#836653
+
+ ORIGINAL ROOT COLOR SCHEME
+:root {
+    --primary: #2c1810;
+    --secondary: #8b6f47;
+    --accent: #d4af37;
+    --text: #2d2d2d;
+    --text-light: #666;
+    --bg: #fafafa;
+    --bg-alt: #ffffff;
+    --border: #e0e0e0;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+*/
