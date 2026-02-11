@@ -271,6 +271,12 @@ section {
     text-align: center;
 }
 
+.gallery-image {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
 .gallery-caption {
     padding: 1.5rem;
 }
