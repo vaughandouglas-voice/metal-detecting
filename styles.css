@@ -312,6 +312,14 @@ section {
     font-size: 0.95rem;
 }
 
+.gallery-details {
+    background: var(--bg-alt);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+}
+
 /* Projects Section */
 .projects-section {
     background: var(--bg-alt);
