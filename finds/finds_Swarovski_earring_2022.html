@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find: Swarovski Drop Earring (2022) – Vaughan Douglas Metal Detecting</title>
+
+    <!-- Shared stylesheet (same fonts + variables as index.html) -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Page-specific styles only (lightbox, meta-table, find image, etc.) -->
+    <style>
+        /* ── Page wrapper ─────────────────────────────────────────────── */
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6rem 2rem 5rem;   /* top padding clears fixed nav */
+        }
+
+        /* ── Breadcrumb ───────────────────────────────────────────────── */
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        .breadcrumb a { color: var(--secondary); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { margin: 0 .4rem; }
+
+        /* ── Page title ───────────────────────────────────────────────── */
+        .find-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: .05em;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ── Metadata table ───────────────────────────────────────────── */
+        .meta-table {
+            width: 100%;
+            max-width: 480px;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            margin-bottom: 2.5rem;
+        }
+        .meta-table td {
+            padding: .4rem .6rem;
+            vertical-align: top;
+        }
+        .meta-table td:first-child {
+            color: var(--text-light);
+            font-weight: 500;
+            white-space: nowrap;
+            width: 90px;
+        }
+        .meta-table td:last-child {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        .meta-table tr + tr td { border-top: 1px solid var(--border); }
+
+        /* ── Zoomable image ───────────────────────────────────────────── */
+        .find-image-wrap {
+            display: inline-block;
+            cursor: zoom-in;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px var(--shadow);
+            margin-bottom: 2.5rem;
+            transition: box-shadow .25s, transform .25s;
+            position: relative;
+        }
+        .find-image-wrap:hover {
+            box-shadow: 0 8px 32px rgba(35, 36, 37, 0.18);
+            transform: translateY(-2px);
+        }
+        .find-image-wrap img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* zoom-hint badge */
+        .zoom-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(35, 36, 37, .65);
+            color: #fff;
+            font-size: 0.75rem;
+            padding: .25rem .55rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity .2s;
+        }
+        .find-image-wrap:hover .zoom-hint { opacity: 1; }
+
+        /* ── Description ─────────────────────────────────────────────── */
+        .find-description {
+            font-size: 1.05rem;
+            color: var(--text);
+            max-width: 680px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        /* ── Lightbox overlay ─────────────────────────────────────────── */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, .88);
+            cursor: zoom-out;
+            align-items: center;
+            justify-content: center;
+            animation: lbFadeIn .2s ease;
+        }
+        #lightbox.active { display: flex; }
+
+        @keyframes lbFadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        #lightbox img {
+            max-width:  92vw;
+            max-height: 92vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, .6);
+            animation: lbScaleIn .25s cubic-bezier(.22, 1, .36, 1);
+            cursor: default;
+            user-select: none;
+        }
+
+        @keyframes lbScaleIn {
+            from { transform: scale(.88); opacity: 0; }
+            to   { transform: scale(1);   opacity: 1; }
+        }
+
+        /* Close button */
+        #lightbox-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.4rem;
+            background: rgba(255, 255, 255, .15);
+            border: none;
+            color: #fff;
+            font-size: 1.6rem;
+            line-height: 1;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s;
+        }
+        #lightbox-close:hover { background: rgba(255, 255, 255, .3); }
+
+        /* Caption */
+        #lightbox-caption {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, .75);
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        /* ── Responsive ──────────────────────────────────────────────── */
+        @media (max-width: 600px) {
+            .page { padding: 5rem 1.2rem 4rem; }
+            .find-title { font-size: 1.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── Navigation (matches index.html pattern) ─────────────────────── -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="../index.html" style="color: inherit; text-decoration: none;">Vaughan Douglas - Metal Detecting</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html#about">About</a></li>
+            <li><a href="../index.html#finds">Finds</a></li>
+            <li><a href="../index.html#projects">Projects</a></li>
+            <li><a href="../index.html#hunt-logs">Hunt Logs</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ── Content ─────────────────────────────────────────────────────── -->
+<main class="page">
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span>›</span>
+        <a href="../index.html#finds">Finds</a><span>›</span>
+        Swarovski Drop Earring (2022)
+    </nav>
+
+    <h1 class="find-title">Find: Swarovski Drop Earring (2022)</h1>
+
+    <table class="meta-table" aria-label="Find details">
+        <tbody>
+            <tr><td>Date</td>     <td>July 17, 2022</td></tr>
+            <tr><td>Location</td> <td>San Jose del Cabo, Mexico</td></tr>
+            <tr><td>Item</td>     <td>Swarovski Drop Earring</td></tr>
+            <tr><td>Material</td> <td>Gold plated, diamonds</td></tr>
+            <tr><td>Value</td>    <td>$150.00 (retail)</td></tr>
+        </tbody>
+    </table>
+
+    <figure>
+        <div class="find-image-wrap" role="button" tabindex="0"
+             aria-label="View enlarged photo of Swarovski Drop Earring find"
+             data-full="../images/FINDS_2022-07_SwarovskiEarring_50_perc.jpg"
+             data-caption="Swarovski drop earring – Cabo, July 17, 2022">
+
+            <img src="../images/FINDS_2022-07_Earring1_01x550.jpg"
+                 alt="Beautiful Swarovski drop earring found at Cabo, July 17, 2022 — Swarovski drop earring"
+                 loading="lazy">
+
+            <span class="zoom-hint" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2.5">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+                </svg>
+                Click to zoom
+            </span>
+        </div>
+    </figure>
+
+    <p class="find-description">
+        Beautiful Swarovski Drop Earring found at Cabo.
+        <br><br>The resort we stayed at granted me permission to metal detect. This resort hosts many events on its beach, like wedddings, receptions, galas, so it's a prime spot to detect.
+    </p>
+
+</main>
+
+<!-- ── Footer (matches index.html) ────────────────────────────────── -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2026 Dragon1964 - Vaughan Douglas. All rights reserved.</p>
+        <p class="footer-link">
+            <a href="https://vaughandouglas-voice.github.io/">Visit my professional voice over site</a>
+        </p>
+    </div>
+</footer>
+
+<!-- ── Lightbox ─────────────────────────────────────────────────────── -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image viewer">
+    <button id="lightbox-close" aria-label="Close enlarged image">&#x2715;</button>
+    <img id="lightbox-img" src="" alt="">
+    <p id="lightbox-caption"></p>
+</div>
+
+<!-- ── Script ──────────────────────────────────────────────────────── -->
+<script>
+    (function () {
+        const lightbox  = document.getElementById('lightbox');
+        const lbImg     = document.getElementById('lightbox-img');
+        const lbCaption = document.getElementById('lightbox-caption');
+        const lbClose   = document.getElementById('lightbox-close');
+
+        function openLightbox(trigger) {
+            lbImg.src             = trigger.dataset.full;
+            lbImg.alt             = trigger.querySelector('img').alt;
+            lbCaption.textContent = trigger.dataset.caption || '';
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            lbClose.focus();
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('[data-full]').forEach(function (el) {
+            el.addEventListener('click', function () { openLightbox(el); });
+            el.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openLightbox(el);
+                }
+            });
+        });
+
+        lbClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+        });
+    })();
+</script>
+
+</body>
+</html>
