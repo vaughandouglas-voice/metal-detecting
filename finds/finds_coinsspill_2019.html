@@ -3,98 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vaughan Douglas - Metal Detecting Finds</title>
-    <meta name="description" content="Vaughan Douglas' metal detecting finds">
-    <link rel="stylesheet" href="../styles.css">
+    <title>Find: Coin Spill (2019) – Vaughan Douglas Metal Detecting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* ── Base ─────────────────────────────────────────────────────── */
+        :root {
+            --primary: #232425;      /* Black */
+            --secondary: #315047;    /* Forest Green */
+            --accent: #653234;       /* Burgundy */
+            --pewter: #bec6cd;       /* Pewter */
+            --text: #232425;
+            --text-light: #666;
+            --bg: #f5f5f5;
+            --bg-alt: #ffffff;
+            --border: #bec6cd;
+            --shadow: rgba(35, 36, 37, 0.1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ── Nav ─────────────────────────────────────────────────────── */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .nav-back {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: opacity .2s;
+        }
+        .nav-back:hover { opacity: .7; }
+
+        /* ── Page wrapper ─────────────────────────────────────────────── */
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+        }
+
+        /* ── Breadcrumb ───────────────────────────────────────────────── */
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        .breadcrumb a { color: var(--secondary); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { margin: 0 .4rem; }
+
+        /* ── Page title ───────────────────────────────────────────────── */
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 300;
+            color: var(--primary);
+            letter-spacing: -.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ── Metadata table ───────────────────────────────────────────── */
+        .meta-table {
+            width: 100%;
+            max-width: 480px;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            margin-bottom: 2.5rem;
+        }
+        .meta-table td {
+            padding: .4rem .6rem;
+            vertical-align: top;
+        }
+        .meta-table td:first-child {
+            color: var(--text-light);
+            font-weight: 500;
+            white-space: nowrap;
+            width: 90px;
+        }
+        .meta-table td:last-child {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        .meta-table tr + tr td { border-top: 1px solid var(--border); }
+
+        /* ── Zoomable image ───────────────────────────────────────────── */
+        .find-image-wrap {
+            display: inline-block;
+            cursor: zoom-in;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0,0,0,.07);
+            margin-bottom: 2.5rem;
+            transition: box-shadow .25s, transform .25s;
+            /* hint to the user */
+            position: relative;
+        }
+        .find-image-wrap:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,.14);
+            transform: translateY(-2px);
+        }
+        .find-image-wrap img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* zoom-hint badge */
+        .zoom-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,.55);
+            color: #fff;
+            font-size: 0.75rem;
+            padding: .25rem .55rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity .2s;
+        }
+        .find-image-wrap:hover .zoom-hint { opacity: 1; }
+
+        /* ── Description ─────────────────────────────────────────────── */
+        .find-description {
+            font-size: 1.05rem;
+            color: var(--text);
+            max-width: 680px;
+            margin-bottom: 3rem;
+        }
+
+        /* ── Lightbox overlay ─────────────────────────────────────────── */
+        #lightbox {
+            display: none;                     /* hidden by default */
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,.88);
+            cursor: zoom-out;
+            align-items: center;
+            justify-content: center;
+            animation: lbFadeIn .2s ease;
+        }
+        #lightbox.active { display: flex; }
+
+        @keyframes lbFadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        #lightbox img {
+            max-width:  92vw;
+            max-height: 92vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 80px rgba(0,0,0,.6);
+            animation: lbScaleIn .25s cubic-bezier(.22,1,.36,1);
+            cursor: default;
+            user-select: none;
+        }
+
+        @keyframes lbScaleIn {
+            from { transform: scale(.88); opacity: 0; }
+            to   { transform: scale(1);   opacity: 1; }
+        }
+
+        /* Close button */
+        #lightbox-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.4rem;
+            background: rgba(255,255,255,.15);
+            border: none;
+            color: #fff;
+            font-size: 1.6rem;
+            line-height: 1;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s;
+        }
+        #lightbox-close:hover { background: rgba(255,255,255,.3); }
+
+        /* Caption */
+        #lightbox-caption {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,.75);
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        /* ── Responsive ──────────────────────────────────────────────── */
+        @media (max-width: 600px) {
+            .page { padding: 2rem 1.2rem 4rem; }
+            h1    { font-size: 1.75rem; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Finds Pages -->
-    <section id="finds-pages" class="finds-section">
-        <div class="container">
-          <h2 class="section-title">find: Coin Spill (2019)</h2>
 
-          <table  style="font-size:18px;">
-            <tr>
-              <td style="text-align:right;font-style:italic;">date</td>
-              <td><span style="padding-left:0.5em;" class="wixui-rich-text__text"></span></td>
-              <td><span style="letter-spacing:0.5em;" class="wixui-rich-text__text">.</span></td>
-              <td>January 2019</td>
-            </tr>
-            <tr>
-              <td style="text-align:right;font-style:italic;">location</td>
-              <td><span style="padding-left:0.5em;" class="wixui-rich-text__text"></span></td>
-              <td><span style="letter-spacing:0.5em;" class="wixui-rich-text__text">.</span></td>
-              <td>West Seattle, WA</td>
-            </tr>
-            <tr>
-              <td style="text-align:right;font-style:italic;">item</td>
-              <td><span style="padding-left:0.5em;" class="wixui-rich-text__text"></span></td>
-              <td><span style="letter-spacing:0.5em;" class="wixui-rich-text__text">.</span></td>
-              <td>Various US coins</td>
-            </tr>
-            <tr>
-              <td style="text-align:right;font-style:italic;">material</td>
-              <td><span style="padding-left:0.5em;" class="wixui-rich-text__text"></span></td>
-              <td><span style="letter-spacing:0.5em;" class="wixui-rich-text__text">.</span></td>
-              <td>3 quarters, 10 dimes, 4 nickels, 2 cents</td>
-            </tr>
-            <tr>
-              <td style="text-align:right;font-style:italic;">retail</td>
-              <td><span style="padding-left:0.5em;" class="wixui-rich-text__text"></span></td>
-              <td><span style="letter-spacing:0.5em;" class="wixui-rich-text__text">.</span></td>
-              <td>$1.97</td>
-            </tr>
-          </table>
-      </div>
-    	<div>
-          <img src="../images/FINDS_CoinSpillx500.jpg" class="gallery-image">
-      </div>
-    </section>
+<!-- ── Navigation ──────────────────────────────────────────────────── -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="../../index.html" class="nav-logo">Vaughan Douglas</a>
+        <a href="../index.html" class="nav-back">
+            ← Metal Detecting Finds
+        </a>
+    </div>
+</nav>
 
+<!-- ── Content ─────────────────────────────────────────────────────── -->
+<main class="page">
 
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a><span>›</span>
+        <a href="../index.html">Metal Detecting</a><span>›</span>
+        Coin Spill (2019)
+    </nav>
 
+    <h1>Find: Coin Spill (2019)</h1>
 
-    <section id="finds-detail"  class="finds-section">
-        <h2 class="section-title">Find: Coin Spill (2019)</h2>
-        <p class="section-subtitle">A coin spill is locating a high amount of coins in one location. The metal detector keeps identifying potential targets even after removing more and more coins.</p>
+    <table class="meta-table" aria-label="Find details">
+        <tbody>
+            <tr><td>Date</td>     <td>January 2019</td></tr>
+            <tr><td>Location</td> <td>West Seattle, WA</td></tr>
+            <tr><td>Item</td>     <td>Various US coins</td></tr>
+            <tr><td>Material</td> <td>3 quarters, 10 dimes, 4 nickels, 2 cents</td></tr>
+            <tr><td>Value</td>    <td>$1.97</td></tr>
+        </tbody>
+    </table>
 
-          <table  style="font-size:18px;">
-            <tr>
-              <td style="text-align:right;font-style:italic;">date</td>
-              <td><span style="padding-left:0.5em;" class="wixui-rich-text__text"></span></td>
-              <td><span style="letter-spacing:0.5em;" class="wixui-rich-text__text">.</span></td>
-              <td>January 2019</td>
-            </tr>
-            <tr>
-              <td style="text-align:right;font-style:italic;">location</td>
-              <td><span style="padding-left:0.5em;" class="wixui-rich-text__text"></span></td>
-              <td><span style="letter-spacing:0.5em;" class="wixui-rich-text__text">.</span></td>
-              <td>West Seattle, WA</td>
-            </tr>
-            <tr>
-              <td style="text-align:right;font-style:italic;">item</td>
-              <td><span style="padding-left:0.5em;" class="wixui-rich-text__text"></span></td>
-              <td><span style="letter-spacing:0.5em;" class="wixui-rich-text__text">.</span></td>
-              <td>Various US coins</td>
-            </tr>
-            <tr>
-              <td style="text-align:right;font-style:italic;">material</td>
-              <td><span style="padding-left:0.5em;" class="wixui-rich-text__text"></span></td>
-              <td><span style="letter-spacing:0.5em;" class="wixui-rich-text__text">.</span></td>
-              <td>3 quarters, 10 dimes, 4 nickels, 2 cents</td>
-            </tr>
-            <tr>
-              <td style="text-align:right;font-style:italic;">retail</td>
-              <td><span style="padding-left:0.5em;" class="wixui-rich-text__text"></span></td>
-              <td><span style="letter-spacing:0.5em;" class="wixui-rich-text__text">.</span></td>
-              <td>$1.97</td>
-            </tr>
-          </table>
-          <img src="../images/FINDS_CoinSpillx500.jpg" alt="Coin Spill found at West Seattle, WA, 2019." class="gallery-image">
-      </div>
-    </section>
+    <!--
+        Zoomable image
+        • click  → opens lightbox
+        • cursor changes to zoom-in on hover
+        • badge appears on hover as a subtle affordance hint
+    -->
+    <figure>
+        <div class="find-image-wrap" role="button" tabindex="0"
+             aria-label="View enlarged photo of coin spill find"
+             data-full="../images/FINDS_CoinSpillx500.jpg"
+             data-caption="Coin Spill – West Seattle, WA, January 2019">
+
+            <img src="../images/FINDS_CoinSpillx500.jpg"
+                 alt="Coin spill found at West Seattle, WA, January 2019 — 3 quarters, 10 dimes, 4 nickels, 2 cents"
+                 loading="lazy">
+
+            <!-- hover hint badge -->
+            <span class="zoom-hint" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2.5">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+                </svg>
+                Click to zoom
+            </span>
+        </div>
+    </figure>
+
+    <p class="find-description">
+        A coin spill occurs when a concentration of coins is located in one spot —
+        the metal detector continues to signal additional targets even after several
+        coins have already been removed. This January 2019 find in West Seattle
+        yielded 19 coins totaling $1.97.
+    </p>
+
+</main>
+
+<!-- ── Lightbox ─────────────────────────────────────────────────────── -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image viewer">
+    <button id="lightbox-close" aria-label="Close enlarged image">&#x2715;</button>
+    <img id="lightbox-img" src="" alt="">
+    <p id="lightbox-caption"></p>
+</div>
+
+<!-- ── Script ──────────────────────────────────────────────────────── -->
+<script>
+    (function () {
+        const lightbox      = document.getElementById('lightbox');
+        const lbImg         = document.getElementById('lightbox-img');
+        const lbCaption     = document.getElementById('lightbox-caption');
+        const lbClose       = document.getElementById('lightbox-close');
+
+        // ── Open ───────────────────────────────────────────────────────
+        function openLightbox(trigger) {
+            const src     = trigger.dataset.full;
+            const caption = trigger.dataset.caption || '';
+            lbImg.src     = src;
+            lbImg.alt     = trigger.querySelector('img').alt;
+            lbCaption.textContent = caption;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            lbClose.focus();
+        }
+
+        // ── Close ──────────────────────────────────────────────────────
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ── Bind triggers ──────────────────────────────────────────────
+        document.querySelectorAll('[data-full]').forEach(function (el) {
+            // mouse click
+            el.addEventListener('click', function () { openLightbox(el); });
+
+            // keyboard — Enter / Space
+            el.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openLightbox(el);
+                }
+            });
+        });
+
+        // ── Close handlers ─────────────────────────────────────────────
+        lbClose.addEventListener('click', closeLightbox);
+
+        // clicking the backdrop (but NOT the image) closes it
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+    })();
+</script>
+
 </body>
 </html>
