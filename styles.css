@@ -57,10 +57,10 @@ body {
 
 .logo {
     font-family: 'Cinzel', serif;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 600;
     color: var(--pewter);
-    letter-spacing: -0.02em;
+    letter-spacing: 0.05em;
 }
 
 .nav-links {
@@ -312,14 +312,6 @@ section {
     font-size: 0.95rem;
 }
 
-.gallery-details {
-    background: var(--bg-alt);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    border: 1px solid var(--border);
-}
-
 /* Projects Section */
 .projects-section {
     background: var(--bg-alt);
@@ -382,21 +374,6 @@ section {
     color: var(--text-light);
     line-height: 1.7;
 }
-
-.project-image {
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    background: #bec6cd;
-}
-
-.project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.3s ease;
-}
-
 
 /* Hunt Logs Section */
 .hunt-logs-section {
