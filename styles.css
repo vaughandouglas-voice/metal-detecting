@@ -40,7 +40,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(44, 24, 16, 0.95);
+    background: rgba(35, 36, 37, 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 2px solid var(--accent);
@@ -57,10 +57,10 @@ body {
 
 .logo {
     font-family: 'Cinzel', serif;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.05em;
+    color: var(--pewter);
+    letter-spacing: -0.02em;
 }
 
 .nav-links {
@@ -85,12 +85,12 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--accent);
+    background: var(--pewter);
     transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: var(--accent);
+    color: var(--pewter);
 }
 
 .nav-links a:hover::after {
@@ -103,10 +103,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #2c1810 0%, #4a3326 100%);
     position: relative;
     overflow: hidden;
     padding-top: 80px;
+}
+
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
 }
 
 .hero::before {
@@ -116,8 +126,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
-        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(212, 175, 55, 0.03) 35px, rgba(212, 175, 55, 0.03) 70px);
+    background: linear-gradient(135deg, rgba(35, 36, 37, 0.75) 0%, rgba(49, 80, 71, 0.75) 100%);
+    z-index: 1;
 }
 
 .hero-content {
@@ -125,6 +135,7 @@ body {
     z-index: 2;
     text-align: center;
     max-width: 900px;
+    width: 100%;
     padding: 2rem;
     animation: fadeInUp 1s ease-out;
 }
@@ -145,7 +156,7 @@ body {
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 600;
     line-height: 1.2;
-    color: var(--accent);
+    color: var(--pewter);
     margin-bottom: 1.5rem;
     letter-spacing: 0.1em;
 }
@@ -161,17 +172,18 @@ body {
     display: inline-block;
     padding: 1rem 2.5rem;
     background: var(--accent);
-    color: var(--primary);
+    color: #ffffff;
     text-decoration: none;
     font-weight: 600;
     border-radius: 50px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 20px rgba(101, 50, 52, 0.3);
 }
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 30px rgba(212, 175, 55, 0.5);
+    box-shadow: 0 6px 30px rgba(101, 50, 52, 0.5);
+    background: #7a3d3f;
 }
 
 /* Section Styling */
@@ -219,7 +231,7 @@ section {
 
 /* Finds Gallery */
 .finds-section {
-    background: #f5f3f0;
+    background: #e8ebed;
 }
 
 .gallery-grid {
@@ -244,7 +256,7 @@ section {
 
 .gallery-image-placeholder {
     aspect-ratio: 16/9;
-    background: linear-gradient(135deg, #e5e5e5 0%, #d5d5d5 100%);
+    background: linear-gradient(135deg, #d4dae0 0%, #bec6cd 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -252,11 +264,29 @@ section {
     padding: 2rem;
 }
 
+.gallery-image {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.gallery-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-image img {
+    transform: scale(1.05);
+}
+
 .gallery-image-placeholder svg {
     width: 80px;
     height: 80px;
     color: var(--secondary);
-    opacity: 0.6;
+    opacity: 0.7;
     margin-bottom: 1rem;
 }
 
@@ -282,6 +312,14 @@ section {
     font-size: 0.95rem;
 }
 
+.gallery-details {
+    background: var(--bg-alt);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+}
+
 /* Projects Section */
 .projects-section {
     background: var(--bg-alt);
@@ -295,7 +333,7 @@ section {
 }
 
 .project-card {
-    background: #f5f3f0;
+    background: #e8ebed;
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -309,7 +347,7 @@ section {
 
 .project-image-placeholder {
     aspect-ratio: 4/3;
-    background: linear-gradient(135deg, #d5c5b0 0%, #b5a590 100%);
+    background: linear-gradient(135deg, #4a6b5f 0%, #315047 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -318,8 +356,8 @@ section {
 .project-image-placeholder svg {
     width: 100px;
     height: 100px;
-    color: var(--primary);
-    opacity: 0.5;
+    color: var(--pewter);
+    opacity: 0.6;
 }
 
 .project-info {
@@ -345,9 +383,24 @@ section {
     line-height: 1.7;
 }
 
+.project-image {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #bec6cd;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+
 /* Hunt Logs Section */
 .hunt-logs-section {
-    background: #f5f3f0;
+    background: #e8ebed;
 }
 
 .logs-container {
@@ -409,7 +462,7 @@ section {
 }
 
 .footer-link a:hover {
-    color: #fff;
+    color: var(--pewter);
     text-decoration: underline;
 }
 
