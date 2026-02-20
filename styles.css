@@ -40,7 +40,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(35, 36, 37, 0.95);
+    background: rgba(44, 24, 16, 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 2px solid var(--accent);
@@ -59,7 +59,7 @@ body {
     font-family: 'Cinzel', serif;
     font-size: 1.8rem;
     font-weight: 600;
-    color: var(--pewter);
+    color: var(--accent);
     letter-spacing: 0.05em;
 }
 
@@ -85,12 +85,12 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--pewter);
+    background: var(--accent);
     transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: var(--pewter);
+    color: var(--accent);
 }
 
 .nav-links a:hover::after {
@@ -103,20 +103,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(135deg, #2c1810 0%, #4a3326 100%);
     position: relative;
     overflow: hidden;
     padding-top: 80px;
-}
-
-.hero-bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    z-index: 0;
 }
 
 .hero::before {
@@ -126,8 +116,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(35, 36, 37, 0.75) 0%, rgba(49, 80, 71, 0.75) 100%);
-    z-index: 1;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(212, 175, 55, 0.03) 35px, rgba(212, 175, 55, 0.03) 70px);
 }
 
 .hero-content {
@@ -135,7 +125,6 @@ body {
     z-index: 2;
     text-align: center;
     max-width: 900px;
-    width: 100%;
     padding: 2rem;
     animation: fadeInUp 1s ease-out;
 }
@@ -156,7 +145,7 @@ body {
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 600;
     line-height: 1.2;
-    color: var(--pewter);
+    color: var(--accent);
     margin-bottom: 1.5rem;
     letter-spacing: 0.1em;
 }
@@ -172,18 +161,17 @@ body {
     display: inline-block;
     padding: 1rem 2.5rem;
     background: var(--accent);
-    color: #ffffff;
+    color: var(--primary);
     text-decoration: none;
     font-weight: 600;
     border-radius: 50px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(101, 50, 52, 0.3);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
 }
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 30px rgba(101, 50, 52, 0.5);
-    background: #7a3d3f;
+    box-shadow: 0 6px 30px rgba(212, 175, 55, 0.5);
 }
 
 /* Section Styling */
@@ -231,7 +219,7 @@ section {
 
 /* Finds Gallery */
 .finds-section {
-    background: #e8ebed;
+    background: #f5f3f0;
 }
 
 .gallery-grid {
@@ -256,7 +244,7 @@ section {
 
 .gallery-image-placeholder {
     aspect-ratio: 16/9;
-    background: linear-gradient(135deg, #d4dae0 0%, #bec6cd 100%);
+    background: linear-gradient(135deg, #e5e5e5 0%, #d5d5d5 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -264,29 +252,11 @@ section {
     padding: 2rem;
 }
 
-.gallery-image {
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    background: #f0f0f0;
-}
-
-.gallery-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.3s ease;
-}
-
-.gallery-item:hover .gallery-image img {
-    transform: scale(1.05);
-}
-
 .gallery-image-placeholder svg {
     width: 80px;
     height: 80px;
     color: var(--secondary);
-    opacity: 0.7;
+    opacity: 0.6;
     margin-bottom: 1rem;
 }
 
@@ -325,7 +295,7 @@ section {
 }
 
 .project-card {
-    background: #e8ebed;
+    background: #f5f3f0;
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -339,7 +309,7 @@ section {
 
 .project-image-placeholder {
     aspect-ratio: 4/3;
-    background: linear-gradient(135deg, #4a6b5f 0%, #315047 100%);
+    background: linear-gradient(135deg, #d5c5b0 0%, #b5a590 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -348,8 +318,8 @@ section {
 .project-image-placeholder svg {
     width: 100px;
     height: 100px;
-    color: var(--pewter);
-    opacity: 0.6;
+    color: var(--primary);
+    opacity: 0.5;
 }
 
 .project-info {
@@ -377,7 +347,7 @@ section {
 
 /* Hunt Logs Section */
 .hunt-logs-section {
-    background: #e8ebed;
+    background: #f5f3f0;
 }
 
 .logs-container {
@@ -439,7 +409,7 @@ section {
 }
 
 .footer-link a:hover {
-    color: var(--pewter);
+    color: #fff;
     text-decoration: underline;
 }
 
